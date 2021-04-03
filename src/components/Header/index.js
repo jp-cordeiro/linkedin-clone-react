@@ -49,8 +49,8 @@ const Header = () => {
         </div>
       </div>
       <div className="header__right">
-        {options.map((option) => (
-          <HeaderOptions {...option} />
+        {options.map((option, index) => (
+          <HeaderOptions key={index} {...option} />
         ))}
       </div>
     </div>
