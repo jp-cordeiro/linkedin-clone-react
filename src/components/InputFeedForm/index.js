@@ -21,7 +21,7 @@ function InputFeedForm() {
 
       setMessage("");
     },
-    [message]
+    [message, dispatch]
   );
 
   return (

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import CreateIcon from "@material-ui/icons/Create";
 import ImageIcon from "@material-ui/icons/Image";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
@@ -11,9 +11,12 @@ import { db } from "../../firebase/firebase.utils";
 
 import "./feed.scss";
 import InputFeedForm from "../InputFeedForm";
+import { useDispatch, useSelector } from "react-redux";
+import { Creators as PostsActions } from "../../store/ducks/posts";
 
 const Feed = () => {
-  const [posts, setPosts] = useState([]);
+  const posts = useSelector((state) => state.postsReducer.posts);
+  const dispatch = useDispatch();
   const iconOptions = [
     {
       Icon: ImageIcon,
@@ -37,22 +40,20 @@ const Feed = () => {
     },
   ];
 
-  const loadPosts = useCallback(() => {
+  useEffect(() => {
     db.collection("posts")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) =>
-        setPosts(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          }))
+        dispatch(
+          PostsActions.loadPosts(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              data: doc.data(),
+            }))
+          )
         )
       );
-  }, [posts]);
-
-  useEffect(() => {
-    loadPosts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="feed">

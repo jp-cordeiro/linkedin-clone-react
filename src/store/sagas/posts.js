@@ -1,6 +1,9 @@
 import { put, all, takeLatest } from "redux-saga/effects";
 import { Creators as PostsActions } from "../ducks/posts";
-import { addPostFirebase, getPostsFirebase } from "../requests/posts";
+import {
+  addPostFirebase,
+  getPostsFirebase,
+} from "../../services/firebase/posts";
 
 function* getPosts() {
   try {
