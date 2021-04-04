@@ -8,11 +8,12 @@ const INITIAL_STATE = {
   currentUser: null,
 };
 
-export const users = produce((state, action) => {
+export const usersReducer = produce((state, action) => {
   switch (action.type) {
     case "users/FETCH_USER":
       state.currentUser = action.payload;
       break;
+    default:
   }
 }, INITIAL_STATE);
 
