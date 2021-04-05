@@ -16,7 +16,7 @@ function Login() {
         {isSignIn ? (
           <p onClick={() => setIsSignIn(false)}>Ainda não tem um login?</p>
         ) : (
-          <p onClick={() => setIsSignIn(true)}>Login</p>
+          <p onClick={() => setIsSignIn(true)}>Voltar</p>
         )}
       </>
     </div>
