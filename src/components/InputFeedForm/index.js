@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Creators as PostsActions } from "../../store/ducks/posts";
 
 function InputFeedForm() {
+  const user = useSelector((state) => state.usersReducer.currentUser);
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
 
@@ -12,10 +13,10 @@ function InputFeedForm() {
 
       dispatch(
         PostsActions.addPost({
-          name: "JP",
-          description: "Teste",
+          name: user.username,
+          description: user.email,
           message,
-          postUrl: "",
+          user: user.uid,
         })
       );
 
