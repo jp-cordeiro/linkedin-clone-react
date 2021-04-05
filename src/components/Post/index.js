@@ -7,8 +7,9 @@ import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 
 import "./post.scss";
 import InputOptionsList from "../InputOptionsList";
+import { avatar } from "../../services/firebase/users";
 
-function Post({ name, description, message, photoUrl }) {
+function Post({ name, description, message, user }) {
   const iconOptions = [
     {
       Icon: ThumbUpAltOutlinedIcon,
@@ -35,7 +36,7 @@ function Post({ name, description, message, photoUrl }) {
     <div>
       <div className="post">
         <div className="post__header">
-          <Avatar />
+          <Avatar src={avatar(user)} />
           <div className="post__info">
             <h2>{name}</h2>
             <p>{description}</p>
