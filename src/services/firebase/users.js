@@ -16,3 +16,7 @@ export const getCurrentUser = () => {
       });
   });
 };
+
+export const avatar = (userId) => {
+  return `https://robohash.org/${userId}?set=set2`;
+};
